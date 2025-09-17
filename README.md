@@ -1,5 +1,3 @@
-﻿# IoT-Threat-Attribution
-
 IoT_threat_attribution/
 │
 ├── data/                 
