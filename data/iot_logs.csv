@@ -1,6 +1,0 @@
-timestamp,device_id,action,ip,resource,trust_level
-2025-09-16 10:00:00,DeviceA,login,192.168.1.10,ServerX,high
-2025-09-16 10:05:00,DeviceB,upload,192.168.1.15,ServerX,low
-2025-09-16 10:10:00,DeviceC,scan,192.168.1.20,RouterY,unknown
-2025-09-16 10:15:00,DeviceB,access,192.168.1.15,ServerX,low
-2025-09-16 10:20:00,DeviceD,download,192.168.1.25,ServerX,medium
