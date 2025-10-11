@@ -1,0 +1,2 @@
+timestamp,device_id,event_type,source_ip,destination_ip,protocol,payload_size,action,threat_level,hour,payload_category,source_ip_type,anomaly_score,is_anomaly
+2024-01-01 10:00:40,device_005,data_exfiltration,192.168.1.150,external.com,TCP,5120,block,high,10,very_large,internal,-0.010093378184009683,True

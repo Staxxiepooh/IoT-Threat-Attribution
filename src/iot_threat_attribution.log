@@ -1,0 +1,35 @@
+2025-10-11 12:29:20,526 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-11 12:29:20,526 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-11 12:29:20,549 - utils.helpers - INFO - Parsed 10 log entries
+2025-10-11 12:29:20,553 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-11 12:29:20,559 - utils.helpers - INFO - Rule-based detections: 4
+2025-10-11 12:29:20,561 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 4, 'unique_attackers': 3, 'severity_distribution': {'critical': 3, 'high': 1}, 'attack_type_distribution': {'malicious_ip': 3, 'data_exfiltration': 1}, 'detection_time_range_hours': 0.006944444444444444, 'detection_rate_per_hour': 4.0}
+2025-10-11 12:29:20,561 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-11 12:29:20,615 - utils.helpers - INFO - Anomaly detections: 1
+2025-10-11 12:29:20,617 - utils.helpers - INFO - Behavioral anomalies: 1
+2025-10-11 12:29:20,618 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-11 12:29:20,619 - utils.helpers - INFO - Total unique detections: 5
+2025-10-11 12:29:20,619 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-11 12:29:20,621 - utils.helpers - INFO - Created 3 attacker profiles
+2025-10-11 12:29:20,622 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-11 12:29:20,628 - utils.helpers - INFO - Built 2 attack chains
+2025-10-11 12:29:20,629 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095515
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:15 to 2024-01-01 10:05:35
+Duration: 10.3 minutes
+Detections: 2
+Tactics: Initial Access
+Confidence: 0.30
+
+Event Sequence:
+1. 2024-01-01 10:00:15 - connection - nan
+2. 2024-01-01 10:00:15 - nan - malicious_ip
+3. 2024-01-01 10:00:35 - brute_force - nan
+4. 2024-01-01 10:00:35 - nan - malicious_ip
+
+2025-10-11 12:29:20,629 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-10-11 12:29:21,605 - utils.helpers - WARNING - Visualization generation failed: name 'plt' is not defined
+2025-10-11 12:29:21,606 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-11 12:29:21,607 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!

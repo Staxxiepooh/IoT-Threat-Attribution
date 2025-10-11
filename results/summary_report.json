@@ -1,0 +1,19 @@
+{
+  "timestamp": "2025-10-11T12:29:21.606266",
+  "total_log_entries": 10,
+  "rule_detections": 4,
+  "anomaly_detections": 1,
+  "attacker_profiles": 3,
+  "attack_chains": 2,
+  "severity_breakdown": {
+    "critical": 3,
+    "high": 1
+  },
+  "average_threat_level": {
+    "high": 3
+  },
+  "skill_level_distribution": {
+    "beginner": 2,
+    "intermediate": 1
+  }
+}

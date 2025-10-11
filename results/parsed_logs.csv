@@ -1,0 +1,11 @@
+timestamp,device_id,event_type,source_ip,destination_ip,protocol,payload_size,action,threat_level,hour,payload_category,source_ip_type
+2024-01-01 10:00:00,device_001,connection,192.168.1.100,192.168.1.1,TCP,512,allow,low,10,small,internal
+2024-01-01 10:00:05,device_002,data_transfer,192.168.1.101,8.8.8.8,UDP,1024,allow,low,10,medium,internal
+2024-01-01 10:00:10,device_001,authentication,192.168.1.100,192.168.1.1,TCP,128,allow,low,10,small,internal
+2024-01-01 10:00:15,device_003,connection,10.0.0.50,192.168.1.1,TCP,256,deny,medium,10,small,internal
+2024-01-01 10:00:20,device_002,data_transfer,192.168.1.101,8.8.8.8,UDP,2048,allow,low,10,large,internal
+2024-01-01 10:00:25,device_004,connection,192.168.1.200,192.168.1.1,TCP,512,allow,low,10,small,internal
+2024-01-01 10:00:30,device_001,malware_detected,192.168.1.100,192.168.1.1,TCP,1024,block,high,10,medium,internal
+2024-01-01 10:00:35,device_003,brute_force,10.0.0.50,192.168.1.1,TCP,128,block,high,10,small,internal
+2024-01-01 10:00:40,device_005,data_exfiltration,192.168.1.150,external.com,TCP,5120,block,high,10,very_large,internal
+2024-01-01 10:00:45,device_002,connection,192.168.1.101,192.168.1.1,TCP,256,allow,low,10,small,internal

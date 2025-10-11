@@ -1,0 +1,4 @@
+source_ip,first_seen,last_seen,duration_hours,total_events,event_frequency,attack_types,num_attack_types,max_severity,target_devices,num_targets,skill_level,motivation,threat_level,profile_confidence
+10.0.0.50,2024-01-01 10:00:15,2024-01-01 10:00:35,0.005555555555555556,2,2.0,['malicious_ip'],1,critical,['device_003'],1,beginner,unknown,high,0.72
+192.168.1.150,2024-01-01 10:00:40,2024-01-01 10:00:40,0.0,1,1.0,"['data_exfiltration', 'anomaly_detection']",2,medium,['device_005'],1,intermediate,data_theft,high,0.71
+192.168.1.200,2024-01-01 10:00:25,2024-01-01 10:00:25,0.0,1,1.0,['malicious_ip'],1,critical,['device_004'],1,beginner,unknown,high,0.61

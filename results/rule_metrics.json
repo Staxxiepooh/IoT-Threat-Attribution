@@ -1,0 +1,14 @@
+{
+  "total_detections": 4,
+  "unique_attackers": 3,
+  "severity_distribution": {
+    "critical": 3,
+    "high": 1
+  },
+  "attack_type_distribution": {
+    "malicious_ip": 3,
+    "data_exfiltration": 1
+  },
+  "detection_time_range_hours": 0.006944444444444444,
+  "detection_rate_per_hour": 4.0
+}

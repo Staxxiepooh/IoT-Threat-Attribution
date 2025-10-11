@@ -1,0 +1,2 @@
+device_id,timestamp,anomaly_type,severity,evidence,source_ip
+device_005,2024-01-01 10:00:40,behavioral,medium,"Unusual behavior pattern: 1 events, avg payload: 5120.00",192.168.1.150
