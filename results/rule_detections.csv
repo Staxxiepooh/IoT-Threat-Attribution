@@ -1,5 +1,7 @@
 rule_name,description,severity,source_ip,device_id,timestamp,evidence
-data_exfiltration,Large data transfer to external IP,high,192.168.1.150,device_005,2024-01-01 10:00:40,Large data transfer (5120 bytes) to external IP
-malicious_ip,Connection from known malicious IP,critical,10.0.0.50,device_003,2024-01-01 10:00:15,Connection from known malicious IP: 10.0.0.50
-malicious_ip,Connection from known malicious IP,critical,10.0.0.50,device_003,2024-01-01 10:00:35,Connection from known malicious IP: 10.0.0.50
-malicious_ip,Connection from known malicious IP,critical,192.168.1.200,device_004,2024-01-01 10:00:25,Connection from known malicious IP: 192.168.1.200
+data_exfiltration,Large data transfer to external IP,high,192.168.1.150,device_005,2024-01-01 10:00:15,Large data transfer (5120 bytes) to external IP
+data_exfiltration,Large data transfer to external IP,high,192.168.1.250,device_008,2024-01-01 10:01:09,Large data transfer (8192 bytes) to external IP
+malicious_ip,Connection from known malicious IP,critical,10.0.0.50,device_003,2024-01-01 10:00:07,Connection from known malicious IP: 10.0.0.50
+malicious_ip,Connection from known malicious IP,critical,10.0.0.50,device_003,2024-01-01 10:00:33,Connection from known malicious IP: 10.0.0.50
+malicious_ip,Connection from known malicious IP,critical,192.168.1.200,device_004,2024-01-01 10:00:10,Connection from known malicious IP: 192.168.1.200
+malicious_ip,Connection from known malicious IP,critical,192.168.1.200,device_004,2024-01-01 10:00:49,Connection from known malicious IP: 192.168.1.200

@@ -1,21 +1,22 @@
 [
   {
-    "chain_id": "chain_10.0.0.50_20240101_095515",
+    "chain_id": "chain_10.0.0.50_20240101_095507",
     "source_ip": "10.0.0.50",
-    "start_time": "2024-01-01 09:55:15",
-    "end_time": "2024-01-01 10:05:35",
-    "duration_minutes": 10.333333333333334,
-    "detection_count": 2,
+    "start_time": "2024-01-01 09:55:07",
+    "end_time": "2024-01-01 10:05:33",
+    "duration_minutes": 10.433333333333334,
+    "detection_count": 3,
     "attack_types": [
       "malicious_ip",
+      "anomaly_detection",
       "malicious_ip"
     ],
-    "max_severity": "critical",
+    "max_severity": "medium",
     "events_sequence": [
       {
-        "timestamp": "2024-01-01 10:00:15",
+        "timestamp": "2024-01-01 10:00:07",
         "device_id": "device_003",
-        "event_type": "connection",
+        "event_type": "authentication",
         "source_ip": "10.0.0.50",
         "destination_ip": "192.168.1.1",
         "protocol": "TCP",
@@ -25,15 +26,15 @@
         "hour": 10.0,
         "payload_category": "small",
         "source_ip_type": "internal",
-        "anomaly_score": 0.0011214864648899647,
-        "is_anomaly": false,
+        "anomaly_score": -0.0548530316169924,
+        "is_anomaly": true,
         "rule_name": NaN,
         "description": NaN,
         "severity": NaN,
         "evidence": NaN
       },
       {
-        "timestamp": "2024-01-01 10:00:15",
+        "timestamp": "2024-01-01 10:00:07",
         "device_id": "device_003",
         "event_type": NaN,
         "source_ip": "10.0.0.50",
@@ -53,19 +54,39 @@
         "evidence": "Connection from known malicious IP: 10.0.0.50"
       },
       {
-        "timestamp": "2024-01-01 10:00:35",
+        "timestamp": "2024-01-01 10:00:07",
         "device_id": "device_003",
-        "event_type": "brute_force",
+        "event_type": NaN,
         "source_ip": "10.0.0.50",
-        "destination_ip": "192.168.1.1",
-        "protocol": "TCP",
-        "payload_size": 128.0,
-        "action": "block",
-        "threat_level": "high",
+        "destination_ip": NaN,
+        "protocol": NaN,
+        "payload_size": NaN,
+        "action": NaN,
+        "threat_level": NaN,
+        "hour": NaN,
+        "payload_category": NaN,
+        "source_ip_type": NaN,
+        "anomaly_score": NaN,
+        "is_anomaly": NaN,
+        "rule_name": "anomaly_detection",
+        "description": "Statistical anomaly detected",
+        "severity": "medium",
+        "evidence": "Anomaly score: 2    -0.054853\n11   -0.005128\nName: anomaly_score, dtype: float64"
+      },
+      {
+        "timestamp": "2024-01-01 10:00:33",
+        "device_id": "device_003",
+        "event_type": "data_transfer",
+        "source_ip": "10.0.0.50",
+        "destination_ip": "10.0.0.1",
+        "protocol": "UDP",
+        "payload_size": 2048.0,
+        "action": "allow",
+        "threat_level": "medium",
         "hour": 10.0,
-        "payload_category": "small",
+        "payload_category": "large",
         "source_ip_type": "internal",
-        "anomaly_score": 0.07121076060655412,
+        "anomaly_score": 0.008383227785890068,
         "is_anomaly": false,
         "rule_name": NaN,
         "description": NaN,
@@ -73,7 +94,7 @@
         "evidence": NaN
       },
       {
-        "timestamp": "2024-01-01 10:00:35",
+        "timestamp": "2024-01-01 10:00:33",
         "device_id": "device_003",
         "event_type": NaN,
         "source_ip": "10.0.0.50",
@@ -96,46 +117,46 @@
     "tactics_identified": [
       "Initial Access"
     ],
-    "confidence_score": 0.30000000000000004
+    "confidence_score": 0.6
   },
   {
-    "chain_id": "chain_192.168.1.150_20240101_095540",
-    "source_ip": "192.168.1.150",
-    "start_time": "2024-01-01 09:55:40",
-    "end_time": "2024-01-01 10:05:40",
-    "duration_minutes": 10.0,
+    "chain_id": "chain_192.168.1.200_20240101_095510",
+    "source_ip": "192.168.1.200",
+    "start_time": "2024-01-01 09:55:10",
+    "end_time": "2024-01-01 10:05:49",
+    "duration_minutes": 10.65,
     "detection_count": 2,
     "attack_types": [
-      "data_exfiltration",
-      "anomaly_detection"
+      "malicious_ip",
+      "malicious_ip"
     ],
-    "max_severity": "medium",
+    "max_severity": "critical",
     "events_sequence": [
       {
-        "timestamp": "2024-01-01 10:00:40",
-        "device_id": "device_005",
-        "event_type": "data_exfiltration",
-        "source_ip": "192.168.1.150",
-        "destination_ip": "external.com",
+        "timestamp": "2024-01-01 10:00:10",
+        "device_id": "device_004",
+        "event_type": "malware_detected",
+        "source_ip": "192.168.1.200",
+        "destination_ip": "192.168.1.1",
         "protocol": "TCP",
-        "payload_size": 5120.0,
+        "payload_size": 1536.0,
         "action": "block",
         "threat_level": "high",
         "hour": 10.0,
-        "payload_category": "very_large",
+        "payload_category": "large",
         "source_ip_type": "internal",
-        "anomaly_score": -0.010093378184009683,
-        "is_anomaly": true,
+        "anomaly_score": 0.11658066064120903,
+        "is_anomaly": false,
         "rule_name": NaN,
         "description": NaN,
         "severity": NaN,
         "evidence": NaN
       },
       {
-        "timestamp": "2024-01-01 10:00:40",
-        "device_id": "device_005",
+        "timestamp": "2024-01-01 10:00:10",
+        "device_id": "device_004",
         "event_type": NaN,
-        "source_ip": "192.168.1.150",
+        "source_ip": "192.168.1.200",
         "destination_ip": NaN,
         "protocol": NaN,
         "payload_size": NaN,
@@ -146,16 +167,36 @@
         "source_ip_type": NaN,
         "anomaly_score": NaN,
         "is_anomaly": NaN,
-        "rule_name": "data_exfiltration",
-        "description": "Large data transfer to external IP",
-        "severity": "high",
-        "evidence": "Large data transfer (5120 bytes) to external IP"
+        "rule_name": "malicious_ip",
+        "description": "Connection from known malicious IP",
+        "severity": "critical",
+        "evidence": "Connection from known malicious IP: 192.168.1.200"
       },
       {
-        "timestamp": "2024-01-01 10:00:40",
-        "device_id": "device_005",
+        "timestamp": "2024-01-01 10:00:49",
+        "device_id": "device_004",
+        "event_type": "connection",
+        "source_ip": "192.168.1.200",
+        "destination_ip": "192.168.1.1",
+        "protocol": "TCP",
+        "payload_size": 512.0,
+        "action": "allow",
+        "threat_level": "low",
+        "hour": 10.0,
+        "payload_category": "small",
+        "source_ip_type": "internal",
+        "anomaly_score": 0.18201533763937272,
+        "is_anomaly": false,
+        "rule_name": NaN,
+        "description": NaN,
+        "severity": NaN,
+        "evidence": NaN
+      },
+      {
+        "timestamp": "2024-01-01 10:00:49",
+        "device_id": "device_004",
         "event_type": NaN,
-        "source_ip": "192.168.1.150",
+        "source_ip": "192.168.1.200",
         "destination_ip": NaN,
         "protocol": NaN,
         "payload_size": NaN,
@@ -166,15 +207,15 @@
         "source_ip_type": NaN,
         "anomaly_score": NaN,
         "is_anomaly": NaN,
-        "rule_name": "anomaly_detection",
-        "description": "Statistical anomaly detected",
-        "severity": "medium",
-        "evidence": "Anomaly score: 8   -0.010093\nName: anomaly_score, dtype: float64"
+        "rule_name": "malicious_ip",
+        "description": "Connection from known malicious IP",
+        "severity": "critical",
+        "evidence": "Connection from known malicious IP: 192.168.1.200"
       }
     ],
     "tactics_identified": [
-      "Exfiltration"
+      "Initial Access"
     ],
-    "confidence_score": 0.5
+    "confidence_score": 0.30000000000000004
   }
 ]

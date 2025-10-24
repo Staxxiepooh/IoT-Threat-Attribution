@@ -1,19 +1,21 @@
 {
-  "timestamp": "2025-10-11T12:29:21.606266",
-  "total_log_entries": 10,
-  "rule_detections": 4,
-  "anomaly_detections": 1,
-  "attacker_profiles": 3,
+  "timestamp": "2025-10-23T18:19:45.551395",
+  "total_log_entries": 20,
+  "rule_detections": 6,
+  "anomaly_detections": 2,
+  "attacker_profiles": 5,
   "attack_chains": 2,
   "severity_breakdown": {
-    "critical": 3,
+    "critical": 4,
+    "high": 2
+  },
+  "threat_level_distribution": {
+    "medium": 2,
+    "critical": 2,
     "high": 1
   },
-  "average_threat_level": {
-    "high": 3
-  },
   "skill_level_distribution": {
-    "beginner": 2,
-    "intermediate": 1
+    "beginner": 3,
+    "intermediate": 2
   }
 }
