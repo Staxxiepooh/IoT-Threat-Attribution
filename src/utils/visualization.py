@@ -12,34 +12,141 @@ class ThreatVisualizer:
         plt.rcParams['figure.figsize'] = [12, 8]
     
     def plot_detection_timeline(self, detection_results, time_column='timestamp'):
-        """Plot detection events timeline"""
+        """Plot detection events timeline with proper time series visualization"""
+        if detection_results.empty:
+            print("No data to plot")
+            return None
+        
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 10))
+        
+        # Convert to datetime if needed
+        detection_results[time_column] = pd.to_datetime(detection_results[time_column])
+        
+        # Plot 1: Time series of threat counts with severity colors
+        time_grouped = detection_results.groupby([
+            pd.Grouper(key=time_column, freq='1min'),  # Group by 1-minute intervals
+            'severity'
+        ]).size().unstack(fill_value=0)
+        
+        # Define colors for each severity
+        severity_colors = {'low': 'green', 'medium': 'orange', 'high': 'red', 'critical': 'purple'}
+        
+        # Plot stacked bar chart for threat counts over time
+        if not time_grouped.empty:
+            time_grouped.plot(kind='bar', stacked=True, ax=ax1, color=[severity_colors.get(col, 'gray') for col in time_grouped.columns])
+            ax1.set_title('Threat Detection Timeline - Threat Counts per Minute')
+            ax1.set_xlabel('Time')
+            ax1.set_ylabel('Number of Threats')
+            ax1.legend(title='Severity')
+            ax1.tick_params(axis='x', rotation=45)
+        
+        # Plot 2: Individual events with severity
+        for severity, color in severity_colors.items():
+            severity_data = detection_results[detection_results['severity'] == severity]
+            if not severity_data.empty:
+                # Convert timestamps to numeric for plotting
+                times_numeric = pd.to_numeric(severity_data[time_column]) / 10**9  # Convert to seconds
+                
+                ax2.scatter(
+                    severity_data[time_column],
+                    [severity] * len(severity_data),
+                    color=color,
+                    label=severity,
+                    alpha=0.7,
+                    s=100,
+                    edgecolors='black',
+                    linewidth=0.5
+                )
+        
+        ax2.set_xlabel('Time')
+        ax2.set_ylabel('Severity')
+        ax2.set_title('Individual Threat Events Timeline')
+        ax2.legend()
+        ax2.tick_params(axis='x', rotation=45)
+        
+        plt.tight_layout()
+        return fig
+    
+    def plot_threat_frequency(self, detection_results, time_column='timestamp'):
+        """Plot threat frequency over time as a line graph"""
         if detection_results.empty:
             print("No data to plot")
             return None
         
         fig, ax = plt.subplots(figsize=(15, 8))
         
-        # Convert to datetime if needed
+        # Convert to datetime and sort
         detection_results[time_column] = pd.to_datetime(detection_results[time_column])
+        detection_results = detection_results.sort_values(time_column)
         
-        # Create timeline plot
-        severity_colors = {'low': 'green', 'medium': 'orange', 'high': 'red', 'critical': 'purple'}
+        # Resample to 30-second intervals and count threats
+        time_series = detection_results.set_index(time_column)
+        threat_counts = time_series.resample('30S').size()
         
-        for severity, color in severity_colors.items():
-            severity_data = detection_results[detection_results['severity'] == severity]
-            if not severity_data.empty:
-                ax.scatter(
-                    severity_data[time_column],
-                    [severity] * len(severity_data),
-                    color=color,
-                    label=severity,
-                    alpha=0.7,
-                    s=100
-                )
+        # Plot the line graph
+        ax.plot(threat_counts.index, threat_counts.values, 
+                linewidth=2, marker='o', markersize=4, color='red', alpha=0.7)
+        
+        # Fill under the line
+        ax.fill_between(threat_counts.index, threat_counts.values, alpha=0.3, color='red')
+        
+        # Add markers for high threat periods
+        high_threat_periods = threat_counts[threat_counts > threat_counts.mean()]
+        if not high_threat_periods.empty:
+            ax.scatter(high_threat_periods.index, high_threat_periods.values, 
+                      color='darkred', s=100, zorder=5, label='High Threat Peaks')
         
         ax.set_xlabel('Time')
-        ax.set_ylabel('Severity')
-        ax.set_title('Threat Detection Timeline')
+        ax.set_ylabel('Number of Threats')
+        ax.set_title('Threat Frequency Over Time - 30 Second Intervals')
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        
+        return fig
+    
+    def plot_severity_timeline(self, detection_results, time_column='timestamp'):
+        """Plot severity levels over time with proper spikes"""
+        if detection_results.empty:
+            print("No data to plot")
+            return None
+        
+        fig, ax = plt.subplots(figsize=(15, 8))
+        
+        # Convert to datetime and sort
+        detection_results[time_column] = pd.to_datetime(detection_results[time_column])
+        detection_results = detection_results.sort_values(time_column)
+        
+        # Map severity to numerical values for plotting
+        severity_map = {'low': 1, 'medium': 2, 'high': 3, 'critical': 4}
+        detection_results['severity_numeric'] = detection_results['severity'].map(severity_map)
+        
+        # Create timeline with severity levels
+        times = detection_results[time_column]
+        severities = detection_results['severity_numeric']
+        
+        # Plot severity levels over time
+        ax.plot(times, severities, 'o-', linewidth=2, markersize=8, alpha=0.7, color='blue')
+        
+        # Add colored regions for different severity levels
+        colors = {1: 'green', 2: 'orange', 3: 'red', 4: 'purple'}
+        for severity_num, color in colors.items():
+            severity_points = detection_results[detection_results['severity_numeric'] == severity_num]
+            if not severity_points.empty:
+                ax.scatter(severity_points[time_column], severity_points['severity_numeric'], 
+                          color=color, s=100, label=f'{list(severity_map.keys())[list(severity_map.values()).index(severity_num)]}', 
+                          alpha=0.8, edgecolors='black')
+        
+        # Customize y-axis
+        ax.set_yticks(list(severity_map.values()))
+        ax.set_yticklabels(list(severity_map.keys()))
+        ax.set_ylim(0.5, 4.5)
+        
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Severity Level')
+        ax.set_title('Threat Severity Timeline with Attack Spikes')
+        ax.grid(True, alpha=0.3)
         ax.legend()
         plt.xticks(rotation=45)
         plt.tight_layout()
@@ -63,7 +170,9 @@ class ThreatVisualizer:
         # Threat level distribution
         if 'threat_level' in attacker_profiles.columns:
             threat_counts = attacker_profiles['threat_level'].value_counts()
-            axes[0, 1].bar(threat_counts.index, threat_counts.values, color=['green', 'orange', 'red', 'purple'])
+            colors = ['green' if s == 'low' else 'orange' if s == 'medium' else 'red' if s == 'high' else 'purple' 
+                     for s in threat_counts.index]
+            axes[0, 1].bar(threat_counts.index, threat_counts.values, color=colors, alpha=0.7, edgecolor='black')
             axes[0, 1].set_title('Threat Level Distribution')
             axes[0, 1].tick_params(axis='x', rotation=45)
         

@@ -138,6 +138,8 @@ class IoTThreatAttribution:
             
         except Exception as e:
             self.logger.error(f"Pipeline failed: {e}")
+            import traceback
+            self.logger.error(f"Traceback: {traceback.format_exc()}")
             return False
     
     def _combine_detections(self):
@@ -170,12 +172,27 @@ class IoTThreatAttribution:
     def _generate_visualizations(self, output_dir):
         """Generate various visualizations"""
         try:
+            import matplotlib.pyplot as plt
+            
             # Timeline visualization
             if self.rule_detections is not None and not self.rule_detections.empty:
+                # Multiple timeline visualizations
                 timeline_fig = self.visualizer.plot_detection_timeline(self.rule_detections)
                 if timeline_fig:
                     timeline_fig.savefig(f"{output_dir}/detection_timeline.png", dpi=300, bbox_inches='tight')
                     plt.close(timeline_fig)
+                
+                # Threat frequency plot
+                frequency_fig = self.visualizer.plot_threat_frequency(self.rule_detections)
+                if frequency_fig:
+                    frequency_fig.savefig(f"{output_dir}/threat_frequency.png", dpi=300, bbox_inches='tight')
+                    plt.close(frequency_fig)
+                
+                # Severity timeline
+                severity_fig = self.visualizer.plot_severity_timeline(self.rule_detections)
+                if severity_fig:
+                    severity_fig.savefig(f"{output_dir}/severity_timeline.png", dpi=300, bbox_inches='tight')
+                    plt.close(severity_fig)
             
             # Attacker profiles visualization
             if self.attacker_profiles is not None and not self.attacker_profiles.empty:
@@ -195,6 +212,8 @@ class IoTThreatAttribution:
             
         except Exception as e:
             self.logger.warning(f"Visualization generation failed: {e}")
+            import traceback
+            self.logger.warning(f"Traceback: {traceback.format_exc()}")
     
     def _generate_summary_report(self, output_dir):
         """Generate a summary report"""
@@ -214,7 +233,7 @@ class IoTThreatAttribution:
         
         # Add attacker profile summary
         if self.attacker_profiles is not None and not self.attacker_profiles.empty:
-            report["average_threat_level"] = self.attacker_profiles['threat_level'].value_counts().to_dict()
+            report["threat_level_distribution"] = self.attacker_profiles['threat_level'].value_counts().to_dict()
             report["skill_level_distribution"] = self.attacker_profiles['skill_level'].value_counts().to_dict()
         
         save_results(report, f"{output_dir}/summary_report.json", format='json')
@@ -231,6 +250,9 @@ class IoTThreatAttribution:
         
         if 'severity_breakdown' in report:
             print(f"Severity Breakdown: {report['severity_breakdown']}")
+        
+        if 'threat_level_distribution' in report:
+            print(f"Threat Level Distribution: {report['threat_level_distribution']}")
         
         print("="*50)
 

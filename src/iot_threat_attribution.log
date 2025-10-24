@@ -33,3 +33,236 @@ Event Sequence:
 2025-10-11 12:29:21,605 - utils.helpers - WARNING - Visualization generation failed: name 'plt' is not defined
 2025-10-11 12:29:21,606 - utils.helpers - INFO - Step 8: Generating summary report...
 2025-10-11 12:29:21,607 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-10-22 13:46:58,408 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-22 13:46:58,408 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-22 13:46:58,431 - utils.helpers - INFO - Parsed 20 log entries
+2025-10-22 13:46:58,433 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-22 13:46:58,436 - utils.helpers - INFO - Rule-based detections: 6
+2025-10-22 13:46:58,438 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-10-22 13:46:58,438 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-22 13:46:58,490 - utils.helpers - INFO - Anomaly detections: 2
+2025-10-22 13:46:58,493 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-10-22 13:46:58,498 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-22 13:46:58,499 - utils.helpers - INFO - Total unique detections: 8
+2025-10-22 13:46:58,499 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-22 13:46:58,502 - utils.helpers - INFO - Created 5 attacker profiles
+2025-10-22 13:46:58,504 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-22 13:46:58,511 - utils.helpers - INFO - Built 2 attack chains
+2025-10-22 13:46:58,512 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-10-22 13:46:58,512 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-10-22 13:46:59,580 - utils.helpers - WARNING - Visualization generation failed: name 'plt' is not defined
+2025-10-22 13:46:59,580 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-22 13:46:59,587 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-10-22 14:13:34,887 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-22 14:13:34,888 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-22 14:13:34,912 - utils.helpers - INFO - Parsed 20 log entries
+2025-10-22 14:13:34,915 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-22 14:13:34,920 - utils.helpers - INFO - Rule-based detections: 6
+2025-10-22 14:13:34,923 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-10-22 14:13:34,923 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-22 14:13:34,977 - utils.helpers - INFO - Anomaly detections: 2
+2025-10-22 14:13:34,981 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-10-22 14:13:34,982 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-22 14:13:34,983 - utils.helpers - INFO - Total unique detections: 8
+2025-10-22 14:13:34,983 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-22 14:13:34,986 - utils.helpers - INFO - Created 5 attacker profiles
+2025-10-22 14:13:34,987 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-22 14:13:34,993 - utils.helpers - INFO - Built 2 attack chains
+2025-10-22 14:13:34,994 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-10-22 14:13:34,994 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-10-22 14:13:38,377 - utils.helpers - INFO - Visualizations saved successfully
+2025-10-22 14:13:38,378 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-22 14:13:38,379 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-10-23 17:02:27,020 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-23 17:02:27,020 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-23 17:02:27,054 - utils.helpers - INFO - Parsed 20 log entries
+2025-10-23 17:02:27,059 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-23 17:02:27,065 - utils.helpers - INFO - Rule-based detections: 6
+2025-10-23 17:02:27,072 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-10-23 17:02:27,072 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-23 17:02:27,140 - utils.helpers - INFO - Anomaly detections: 2
+2025-10-23 17:02:27,144 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-10-23 17:02:27,145 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-23 17:02:27,148 - utils.helpers - INFO - Total unique detections: 8
+2025-10-23 17:02:27,148 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-23 17:02:27,151 - utils.helpers - INFO - Created 5 attacker profiles
+2025-10-23 17:02:27,152 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-23 17:02:27,165 - utils.helpers - INFO - Built 2 attack chains
+2025-10-23 17:02:27,166 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-10-23 17:02:27,166 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-10-23 17:02:27,166 - utils.helpers - INFO - Generating circuit pathway visualization...
+2025-10-23 17:02:28,397 - utils.helpers - INFO - Circuit pathway visualization saved
+2025-10-23 17:02:28,397 - utils.helpers - INFO - Generating device communication flow visualization...
+2025-10-23 17:02:29,009 - utils.helpers - INFO - Device communication flow visualization saved
+2025-10-23 17:02:29,009 - utils.helpers - INFO - Generating timeline visualizations...
+2025-10-23 17:02:30,753 - utils.helpers - INFO - Generating attacker profiles visualization...
+2025-10-23 17:02:31,625 - utils.helpers - INFO - Generating threat distribution visualization...
+2025-10-23 17:02:32,009 - utils.helpers - INFO - Generating attack chain visualization...
+2025-10-23 17:02:32,293 - utils.helpers - INFO - All visualizations saved successfully
+2025-10-23 17:02:32,293 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-23 17:02:32,305 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-10-23 17:35:45,501 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-23 17:35:45,501 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-23 17:35:45,547 - utils.helpers - INFO - Parsed 20 log entries
+2025-10-23 17:35:45,550 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-23 17:35:45,557 - utils.helpers - INFO - Rule-based detections: 6
+2025-10-23 17:35:45,562 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-10-23 17:35:45,562 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-23 17:35:45,630 - utils.helpers - INFO - Anomaly detections: 2
+2025-10-23 17:35:45,634 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-10-23 17:35:45,634 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-23 17:35:45,636 - utils.helpers - INFO - Total unique detections: 8
+2025-10-23 17:35:45,636 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-23 17:35:45,638 - utils.helpers - INFO - Created 5 attacker profiles
+2025-10-23 17:35:45,639 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-23 17:35:45,646 - utils.helpers - INFO - Built 2 attack chains
+2025-10-23 17:35:45,647 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-10-23 17:35:45,647 - utils.helpers - INFO - Step 7: Generating enhanced visualizations...
+2025-10-23 17:35:45,647 - utils.helpers - INFO - Generating enhanced circuit pathway visualization...
+2025-10-23 17:35:46,056 - utils.helpers - WARNING - Enhanced visualization generation failed: FancyBboxPatch.set() got an unexpected keyword argument 'bboxstyle'
+2025-10-23 17:35:46,061 - utils.helpers - WARNING - Traceback: Traceback (most recent call last):
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 180, in _generate_enhanced_visualizations
+    circuit_fig = self.visualizer.plot_circuit_pathway(self.parsed_logs, self.rule_detections)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/utils/visualization.py", line 78, in plot_circuit_pathway
+    ax.text(x, y + 0.06, threat_level.upper(), ha='center', va='bottom',
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/axes/_axes.py", line 743, in text
+    t = mtext.Text(x, y, text=s, **effective_kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/text.py", line 155, in __init__
+    self.update(kwargs)
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/text.py", line 207, in update
+    ret.append(self.set_bbox(bbox))
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/text.py", line 541, in set_bbox
+    self._bbox_patch = FancyBboxPatch(
+                       ^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/patches.py", line 3932, in __init__
+    super().__init__(**kwargs)
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/patches.py", line 98, in __init__
+    self._internal_update(kwargs)
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/artist.py", line 1216, in _internal_update
+    return self._update_props(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/matplotlib/artist.py", line 1190, in _update_props
+    raise AttributeError(
+AttributeError: FancyBboxPatch.set() got an unexpected keyword argument 'bboxstyle'
+
+2025-10-23 17:35:46,061 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-23 17:35:46,063 - utils.helpers - ERROR - Pipeline failed: Column 'threat_level' has dtype object, cannot use method 'nlargest' with this dtype
+2025-10-23 17:35:46,066 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 134, in run_pipeline
+    self._generate_summary_report(output_dir)
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 289, in _generate_summary_report
+    report["top_attackers"] = self.attacker_profiles.nlargest(3, 'threat_level')[['source_ip', 'threat_level', 'skill_level']].to_dict('records')
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandas/core/frame.py", line 7644, in nlargest
+    return selectn.SelectNFrame(self, n=n, keep=keep, columns=columns).nlargest()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandas/core/methods/selectn.py", line 57, in nlargest
+    return self.compute("nlargest")
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandas/core/methods/selectn.py", line 201, in compute
+    raise TypeError(
+TypeError: Column 'threat_level' has dtype object, cannot use method 'nlargest' with this dtype
+
+2025-10-23 18:19:41,980 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-10-23 18:19:41,981 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-10-23 18:19:42,011 - utils.helpers - INFO - Parsed 20 log entries
+2025-10-23 18:19:42,015 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-10-23 18:19:42,021 - utils.helpers - INFO - Rule-based detections: 6
+2025-10-23 18:19:42,024 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-10-23 18:19:42,024 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-10-23 18:19:42,087 - utils.helpers - INFO - Anomaly detections: 2
+2025-10-23 18:19:42,090 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-10-23 18:19:42,092 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-10-23 18:19:42,093 - utils.helpers - INFO - Total unique detections: 8
+2025-10-23 18:19:42,093 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-10-23 18:19:42,097 - utils.helpers - INFO - Created 5 attacker profiles
+2025-10-23 18:19:42,099 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-10-23 18:19:42,111 - utils.helpers - INFO - Built 2 attack chains
+2025-10-23 18:19:42,112 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-10-23 18:19:42,112 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-10-23 18:19:45,550 - utils.helpers - INFO - Visualizations saved successfully
+2025-10-23 18:19:45,551 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-10-23 18:19:45,552 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
