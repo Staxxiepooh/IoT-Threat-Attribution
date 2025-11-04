@@ -1,3 +1,3 @@
 timestamp,device_id,event_type,source_ip,destination_ip,protocol,payload_size,action,threat_level,hour,payload_category,source_ip_type,anomaly_score,is_anomaly
-2024-01-01 10:00:07,device_003,authentication,10.0.0.50,192.168.1.1,TCP,256,deny,medium,10,small,internal,-0.0548530316169924,True
-2024-01-01 10:00:45,device_010,firmware_update,192.168.1.102,update.server.com,HTTP,1024,allow,low,10,medium,internal,-0.005127950264411929,True
+2024-01-01 09:03:05,device_004,data_transfer,172.16.0.10,8.8.8.8,UDP,1536,allow,low,9,large,internal,-0.0022127387687004285,True
+2024-01-01 09:05:05,device_006,firmware_update,10.10.0.11,update.server.com,HTTP,1024,allow,low,9,medium,internal,-0.0431844514479135,True

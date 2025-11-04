@@ -266,3 +266,671 @@ Event Sequence:
 2025-10-23 18:19:45,550 - utils.helpers - INFO - Visualizations saved successfully
 2025-10-23 18:19:45,551 - utils.helpers - INFO - Step 8: Generating summary report...
 2025-10-23 18:19:45,552 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 11:45:36,259 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 11:45:37,260 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 11:45:38,460 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 11:45:38,466 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 11:45:38,476 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 11:45:42,140 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 11:45:42,141 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 11:45:42,238 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 11:45:42,242 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 11:45:43,704 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 11:45:43,712 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 11:45:43,712 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 11:45:43,720 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 11:45:44,641 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 11:45:44,671 - utils.helpers - INFO - Built 2 attack chains
+2025-11-03 11:45:45,697 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-11-03 11:45:45,698 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 11:45:49,281 - utils.helpers - WARNING - Visualization generation failed: 'float' object has no attribute 'lower'
+2025-11-03 11:45:49,292 - utils.helpers - WARNING - Traceback: Traceback (most recent call last):
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 227, in _generate_visualizations
+    chain_fig = self.visualizer.plot_attack_chain(self.attack_chains[0])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/utils/visualization.py", line 265, in plot_attack_chain
+    event_type = G.nodes[node].get('event_type', 'Unknown').lower()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'lower'
+
+2025-11-03 11:45:49,293 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 11:45:50,624 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 11:56:50,643 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 11:56:50,644 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 11:56:50,671 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 11:56:50,674 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 11:56:50,681 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 11:56:50,685 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 11:56:50,685 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 11:56:50,743 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 11:56:50,746 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 11:56:50,747 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 11:56:50,748 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 11:56:50,748 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 11:56:50,752 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 11:56:50,753 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 11:56:50,759 - utils.helpers - INFO - Built 2 attack chains
+2025-11-03 11:56:50,760 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-11-03 11:56:50,760 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 11:56:54,870 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 11:56:54,871 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 11:56:54,874 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 12:01:42,378 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 12:01:42,379 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 12:01:42,403 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 12:01:42,406 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 12:01:42,411 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 12:01:42,413 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 12:01:42,414 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 12:01:42,469 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 12:01:42,472 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 12:01:42,473 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 12:01:42,474 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 12:01:42,474 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 12:01:42,477 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 12:01:42,478 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 12:01:42,485 - utils.helpers - INFO - Built 2 attack chains
+2025-11-03 12:01:42,486 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-11-03 12:01:42,486 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 12:01:46,416 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 12:01:46,417 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 12:01:46,421 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 12:53:19,615 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 12:53:19,616 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 12:53:19,648 - utils.helpers - INFO - Parsed 10 log entries
+2025-11-03 12:53:19,650 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 12:53:19,655 - utils.helpers - INFO - Rule-based detections: 4
+2025-11-03 12:53:19,657 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 4, 'unique_attackers': 4, 'severity_distribution': {'high': 2, 'critical': 2}, 'attack_type_distribution': {'data_exfiltration': 2, 'malicious_ip': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 4.0}
+2025-11-03 12:53:19,657 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 12:53:19,712 - utils.helpers - INFO - Anomaly detections: 1
+2025-11-03 12:53:19,715 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 12:53:19,716 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 12:53:19,717 - utils.helpers - INFO - Total unique detections: 5
+2025-11-03 12:53:19,717 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 12:53:19,720 - utils.helpers - INFO - Created 4 attacker profiles
+2025-11-03 12:53:19,721 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 12:53:19,725 - utils.helpers - INFO - Built 1 attack chains
+2025-11-03 12:53:19,726 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:07
+Duration: 10.0 minutes
+Detections: 2
+Tactics: Initial Access
+Confidence: 0.50
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+
+2025-11-03 12:53:19,726 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 12:53:23,766 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 12:53:23,766 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 12:53:23,768 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 13:00:06,519 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 13:00:06,520 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 13:00:06,540 - utils.helpers - INFO - Parsed 12 log entries
+2025-11-03 13:00:06,543 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 13:00:06,547 - utils.helpers - INFO - Rule-based detections: 0
+2025-11-03 13:00:06,547 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 13:00:06,600 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 13:00:06,603 - utils.helpers - INFO - Behavioral anomalies: 2
+2025-11-03 13:00:06,604 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 13:00:06,605 - utils.helpers - INFO - Total unique detections: 2
+2025-11-03 13:00:06,605 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 13:00:06,607 - utils.helpers - INFO - Created 2 attacker profiles
+2025-11-03 13:00:06,607 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 13:00:06,608 - utils.helpers - INFO - Built 0 attack chains
+2025-11-03 13:00:06,608 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 13:00:07,917 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 13:00:07,917 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 13:00:07,919 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 13:07:39,775 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 13:07:39,777 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 13:07:39,803 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 13:07:39,806 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 13:07:39,811 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 13:07:39,815 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 13:07:39,815 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 13:07:39,871 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 13:07:39,875 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 13:07:39,876 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 13:07:39,878 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 13:07:39,878 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 13:07:39,881 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 13:07:39,882 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 13:07:39,892 - utils.helpers - INFO - Built 2 attack chains
+2025-11-03 13:07:39,893 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-11-03 13:07:39,893 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 13:07:44,012 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 13:07:44,013 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 13:07:44,014 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 13:30:48,679 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 13:30:48,680 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 13:30:48,705 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 13:30:48,709 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 13:30:48,714 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 13:30:48,717 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 13:30:48,717 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 13:30:48,786 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 13:30:48,789 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 13:30:48,790 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 13:30:48,791 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 13:30:48,791 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 13:30:48,794 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 13:30:48,794 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 13:30:48,802 - utils.helpers - INFO - Built 2 attack chains
+2025-11-03 13:30:48,803 - utils.helpers - INFO - Sample attack chain:
+
+Attack Chain: chain_10.0.0.50_20240101_095507
+Source IP: 10.0.0.50
+Time Range: 2024-01-01 09:55:07 to 2024-01-01 10:05:33
+Duration: 10.4 minutes
+Detections: 3
+Tactics: Initial Access
+Confidence: 0.60
+
+Event Sequence:
+1. 2024-01-01 10:00:07 - authentication - nan
+2. 2024-01-01 10:00:07 - nan - malicious_ip
+3. 2024-01-01 10:00:07 - nan - anomaly_detection
+4. 2024-01-01 10:00:33 - data_transfer - nan
+5. 2024-01-01 10:00:33 - nan - malicious_ip
+
+2025-11-03 13:30:48,803 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 13:30:52,755 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 13:30:52,756 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 13:30:52,757 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 17:06:16,645 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:06:16,647 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:06:16,677 - utils.helpers - INFO - Parsed 20 log entries
+2025-11-03 17:06:16,681 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:06:16,686 - utils.helpers - INFO - Rule-based detections: 6
+2025-11-03 17:06:16,690 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 6, 'unique_attackers': 4, 'severity_distribution': {'critical': 4, 'high': 2}, 'attack_type_distribution': {'malicious_ip': 4, 'data_exfiltration': 2}, 'detection_time_range_hours': 0.017222222222222222, 'detection_rate_per_hour': 6.0}
+2025-11-03 17:06:16,690 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:06:16,750 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:06:16,753 - utils.helpers - INFO - Behavioral anomalies: 6
+2025-11-03 17:06:16,755 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:06:16,756 - utils.helpers - INFO - Total unique detections: 8
+2025-11-03 17:06:16,756 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:06:16,759 - utils.helpers - INFO - Created 5 attacker profiles
+2025-11-03 17:06:16,760 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:06:16,771 - utils.helpers - INFO - Built 10 attack chains
+2025-11-03 17:12:56,639 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:12:56,640 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:12:56,665 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-03 17:12:56,669 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:12:56,678 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-03 17:12:56,681 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-03 17:12:56,681 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:12:56,737 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:12:56,740 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-03 17:12:56,740 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:12:56,742 - utils.helpers - INFO - Total unique detections: 11
+2025-11-03 17:12:56,742 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:12:56,746 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-03 17:12:56,747 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:12:56,756 - utils.helpers - INFO - Built 6 attack chains
+2025-11-03 17:17:59,087 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:17:59,088 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:17:59,109 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-03 17:17:59,115 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:17:59,121 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-03 17:17:59,123 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-03 17:17:59,123 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:17:59,180 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:17:59,183 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-03 17:17:59,184 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:17:59,185 - utils.helpers - INFO - Total unique detections: 11
+2025-11-03 17:17:59,185 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:17:59,188 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-03 17:17:59,189 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:17:59,219 - utils.helpers - INFO - Built 6 attack chains
+2025-11-03 17:28:02,286 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:28:02,287 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:28:02,313 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-03 17:28:02,316 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:28:02,323 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-03 17:28:02,327 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-03 17:28:02,327 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:28:02,380 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:28:02,384 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-03 17:28:02,385 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:28:02,386 - utils.helpers - INFO - Total unique detections: 11
+2025-11-03 17:28:02,386 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:28:02,389 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-03 17:28:02,390 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:28:02,420 - utils.helpers - INFO - Built 6 attack chains
+2025-11-03 17:28:02,423 - utils.helpers - ERROR - Pipeline failed: 'ContextChainBuilder' object has no attribute 'visualize_chain'
+2025-11-03 17:28:02,424 - utils.helpers - ERROR - Traceback: Traceback (most recent call last):
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 126, in run_pipeline
+    chain_viz = self.chain_builder.visualize_chain(self.attack_chains[0])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ContextChainBuilder' object has no attribute 'visualize_chain'
+
+2025-11-03 17:30:20,842 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:30:20,844 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:30:20,872 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-03 17:30:20,876 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:30:20,883 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-03 17:30:20,886 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-03 17:30:20,886 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:30:20,946 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:30:20,949 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-03 17:30:20,951 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:30:20,953 - utils.helpers - INFO - Total unique detections: 11
+2025-11-03 17:30:20,954 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:30:20,958 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-03 17:30:20,959 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:30:21,003 - utils.helpers - INFO - Built 6 attack chains
+2025-11-03 17:30:21,004 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 17:30:29,287 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 17:30:29,289 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 17:30:29,298 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-03 17:37:33,717 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-03 17:37:33,718 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-03 17:37:33,743 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-03 17:37:33,747 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-03 17:37:33,756 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-03 17:37:33,759 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-03 17:37:33,759 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-03 17:37:33,818 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-03 17:37:33,821 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-03 17:37:33,822 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-03 17:37:33,823 - utils.helpers - INFO - Total unique detections: 11
+2025-11-03 17:37:33,823 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-03 17:37:33,827 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-03 17:37:33,828 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-03 17:37:33,860 - utils.helpers - INFO - Built 6 attack chains
+2025-11-03 17:37:33,862 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-03 17:37:42,286 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-03 17:37:42,287 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-03 17:37:42,290 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:37:51,749 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:37:51,750 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:37:51,799 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:37:51,807 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:37:51,818 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:37:51,823 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:37:51,823 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:37:51,886 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:37:51,889 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:37:51,890 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:37:51,892 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:37:51,892 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:37:51,897 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:37:51,898 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:37:51,928 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:37:51,929 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:55,488 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,489 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:55,489 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:37:55,489 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:37:56,161 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:37:56,161 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:37:56,162 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:41:40,136 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:41:40,137 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:41:40,165 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:41:40,171 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:41:40,180 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:41:40,185 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:41:40,185 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:41:40,245 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:41:40,249 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:41:40,250 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:41:40,252 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:41:40,252 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:41:40,258 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:41:40,259 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:41:40,290 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:41:40,292 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:41:43,693 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:41:43,696 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:41:44,362 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:41:44,362 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:41:44,363 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:46:13,885 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:46:13,886 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:46:13,914 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:46:13,917 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:46:13,926 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:46:13,931 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:46:13,931 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:46:13,987 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:46:13,990 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:46:13,990 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:46:13,992 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:46:13,992 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:46:13,995 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:46:13,996 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:46:14,023 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:46:14,025 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:46:17,583 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:46:17,585 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:46:18,248 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:46:18,248 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:46:18,249 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:49:06,098 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:49:06,099 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:49:06,122 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:49:06,128 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:49:06,133 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:49:06,137 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:49:06,137 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:49:06,194 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:49:06,196 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:49:06,197 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:49:06,199 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:49:06,199 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:49:06,202 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:49:06,203 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:49:06,229 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:49:06,230 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:49:09,754 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:09,755 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:10,412 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:49:10,412 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:49:10,414 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:49:34,256 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:49:34,257 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:49:34,279 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:49:34,281 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:49:34,286 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:49:34,289 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:49:34,289 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:49:34,346 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:49:34,348 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:49:34,349 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:49:34,350 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:49:34,350 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:49:34,354 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:49:34,355 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:49:34,380 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:49:34,381 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:49:37,700 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,701 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:37,701 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,701 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:37,702 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:38,352 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:49:38,352 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:49:38,353 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:49:49,950 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:49:49,950 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:49:49,970 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:49:49,973 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:49:49,979 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:49:49,980 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:49:49,980 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:49:50,039 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:49:50,042 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:49:50,043 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:49:50,044 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:49:50,044 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:49:50,047 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:49:50,048 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:49:50,077 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:49:50,079 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:49:53,358 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:49:53,359 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:49:54,014 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:49:54,014 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:49:54,015 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 17:50:06,485 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 17:50:06,486 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 17:50:06,509 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 17:50:06,511 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 17:50:06,516 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 17:50:06,518 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 17:50:06,518 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 17:50:06,571 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 17:50:06,575 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 17:50:06,576 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 17:50:06,577 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 17:50:06,577 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 17:50:06,580 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 17:50:06,581 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 17:50:06,606 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 17:50:06,607 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 17:50:09,821 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 17:50:09,822 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 17:50:10,489 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 17:50:10,489 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 17:50:10,493 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 18:04:24,827 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 18:04:24,828 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 18:04:24,851 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 18:04:24,853 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 18:04:24,858 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 18:04:24,860 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 18:04:24,860 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 18:04:24,914 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 18:04:24,917 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 18:04:24,917 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 18:04:24,919 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 18:04:24,919 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 18:04:24,922 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 18:04:24,923 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 18:04:24,947 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 18:04:24,949 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,670 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:28,671 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,671 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:28,671 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:04:28,671 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:04:29,338 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 18:04:29,338 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 18:04:29,341 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 18:06:19,570 - utils.helpers - INFO - Starting IoT Threat Attribution Pipeline
+2025-11-04 18:06:19,572 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 18:06:19,598 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 18:06:19,601 - utils.helpers - INFO - Step 2: Running rule-based detection...
+2025-11-04 18:06:19,607 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 18:06:19,610 - utils.helpers - INFO - Rule detection metrics: {'total_detections': 9, 'unique_attackers': 5, 'severity_distribution': {'critical': 5, 'high': 4}, 'attack_type_distribution': {'malicious_ip': 5, 'data_exfiltration': 4}, 'detection_time_range_hours': 0.06666666666666667, 'detection_rate_per_hour': 9.0}
+2025-11-04 18:06:19,610 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 18:06:19,675 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 18:06:19,678 - utils.helpers - INFO - Behavioral anomalies: 10
+2025-11-04 18:06:19,679 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 18:06:19,681 - utils.helpers - INFO - Total unique detections: 11
+2025-11-04 18:06:19,681 - utils.helpers - INFO - Step 5: Building attacker profiles...
+2025-11-04 18:06:19,684 - utils.helpers - INFO - Created 6 attacker profiles
+2025-11-04 18:06:19,685 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 18:06:19,711 - utils.helpers - INFO - Built 6 attack chains
+2025-11-04 18:06:19,713 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_003: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_006: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_005: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_002: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_001: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_device_attack_chain'
+2025-11-04 18:06:22,997 - utils.helpers - WARNING - Failed to create simple attack chain for device device_004: 'ThreatVisualizer' object has no attribute 'plot_simple_attack_chain'
+2025-11-04 18:06:23,651 - utils.helpers - INFO - Visualizations saved successfully
+2025-11-04 18:06:23,651 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 18:06:23,652 - utils.helpers - INFO - IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 18:08:14,527 - utils.helpers - INFO - 🚀 Starting IoT Threat Attribution Pipeline
+2025-11-04 18:08:14,529 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 18:08:14,559 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 18:08:14,563 - utils.helpers - INFO - Step 2: Applying rule-based detection...
+2025-11-04 18:08:14,568 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 18:08:14,571 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 18:08:14,627 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 18:08:14,631 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 18:08:14,632 - utils.helpers - INFO - Total detections combined: 11
+2025-11-04 18:08:14,632 - utils.helpers - INFO - Step 5: Creating attacker profiles...
+2025-11-04 18:08:14,636 - utils.helpers - INFO - Attacker profiles created: 6
+2025-11-04 18:08:14,636 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 18:08:14,668 - utils.helpers - INFO - Attack chains built: 6
+2025-11-04 18:08:14,670 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 18:08:18,074 - utils.helpers - INFO - Generating improved attack chain visualizations per device...
+2025-11-04 18:08:18,075 - utils.helpers - WARNING - Visualization generation failed: Invalid chain format for visualization
+2025-11-04 18:08:18,077 - utils.helpers - WARNING - Traceback (most recent call last):
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/main.py", line 180, in _generate_visualizations
+    self.chain_builder.visualize_chain_improved(self.attack_chains, save_path=output_dir)
+  File "/Users/indrayudhsmac/Desktop/7TH SEM PROJECT/IoT_threat_attribution/src/attribution/context_chain.py", line 149, in visualize_chain_improved
+    raise ValueError("Invalid chain format for visualization")
+ValueError: Invalid chain format for visualization
+
+2025-11-04 18:08:18,077 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 18:08:18,080 - utils.helpers - INFO - ✅ IoT Threat Attribution Pipeline completed successfully!
+2025-11-04 18:11:14,186 - utils.helpers - INFO - 🚀 Starting IoT Threat Attribution Pipeline
+2025-11-04 18:11:14,188 - utils.helpers - INFO - Step 1: Parsing IoT logs...
+2025-11-04 18:11:14,206 - utils.helpers - INFO - Parsed 30 log entries
+2025-11-04 18:11:14,209 - utils.helpers - INFO - Step 2: Applying rule-based detection...
+2025-11-04 18:11:14,213 - utils.helpers - INFO - Rule-based detections: 9
+2025-11-04 18:11:14,216 - utils.helpers - INFO - Step 3: Running anomaly detection...
+2025-11-04 18:11:14,271 - utils.helpers - INFO - Anomaly detections: 2
+2025-11-04 18:11:14,275 - utils.helpers - INFO - Step 4: Combining detection results...
+2025-11-04 18:11:14,276 - utils.helpers - INFO - Total detections combined: 11
+2025-11-04 18:11:14,276 - utils.helpers - INFO - Step 5: Creating attacker profiles...
+2025-11-04 18:11:14,279 - utils.helpers - INFO - Attacker profiles created: 6
+2025-11-04 18:11:14,280 - utils.helpers - INFO - Step 6: Building attack chains...
+2025-11-04 18:11:14,305 - utils.helpers - INFO - Attack chains built: 6
+2025-11-04 18:11:14,307 - utils.helpers - INFO - Step 7: Generating visualizations...
+2025-11-04 18:11:17,790 - utils.helpers - INFO - Generating improved attack chain visualizations per device...
+2025-11-04 18:11:20,537 - utils.helpers - INFO - ✅ Visualizations saved successfully!
+2025-11-04 18:11:20,537 - utils.helpers - INFO - Step 8: Generating summary report...
+2025-11-04 18:11:20,540 - utils.helpers - INFO - ✅ IoT Threat Attribution Pipeline completed successfully!

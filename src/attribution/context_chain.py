@@ -1,180 +1,280 @@
+#!/usr/bin/env python3
+"""
+Context Chain Builder for IoT Threat Attribution
+
+Provides:
+- ContextChainBuilder.build_attack_chains(parsed_logs, detections): builds multi-hop chains
+  by following destination IP hops and mapping IP -> device_id.
+- ContextChainBuilder.visualize_chain_improved(chain, save_path=None): visualizes a chain as a
+  compact left-to-right chronological directed graph with readable labels and severity color coding.
+"""
+
+from typing import List, Dict, Any, Optional
 import pandas as pd
 import networkx as nx
-from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
 
 class ContextChainBuilder:
     def __init__(self):
-        self.attack_chains = []
-    
-    def build_attack_chains(self, log_data, detection_results, time_window_minutes=30):
-        """Build attack chains from correlated events"""
-        chains = []
-        
-        # Sort data by timestamp
-        log_data = log_data.sort_values('timestamp')
-        detection_results = detection_results.sort_values('timestamp')
-        
-        # Group events by time windows and source IPs
-        source_ips = detection_results['source_ip'].unique()
-        
-        for source_ip in source_ips:
-            ip_detections = detection_results[detection_results['source_ip'] == source_ip]
-            ip_events = log_data[log_data['source_ip'] == source_ip]
-            
-            if not ip_detections.empty:
-                chains.extend(
-                    self._build_ip_attack_chain(source_ip, ip_detections, ip_events, time_window_minutes)
+        # severity ranking for aggregation
+        self.severity_levels = {
+            "low": 1,
+            "medium": 2,
+            "high": 3,
+            "critical": 4
+        }
+
+    def build_attack_chains(self, parsed_logs: pd.DataFrame, detections: pd.DataFrame) -> List[Dict[str, Any]]:
+        """
+        Build multi-hop attack chains by following destination IP hops and mapping IP -> device_id.
+        Returns a list of chain dicts compatible with visualize_chain_improved().
+        """
+        if parsed_logs is None or parsed_logs.empty:
+            return []
+
+        parsed = parsed_logs.copy()
+        parsed['timestamp'] = pd.to_datetime(parsed['timestamp'], errors='coerce')
+
+        det = detections.copy() if detections is not None else pd.DataFrame()
+        if not det.empty and 'timestamp' in det.columns:
+            det['timestamp'] = pd.to_datetime(det['timestamp'], errors='coerce')
+
+        # Merge detections with parsed logs
+        if not det.empty:
+            merged = pd.merge(
+                parsed, det,
+                on=['source_ip', 'device_id', 'timestamp'],
+                how='left', suffixes=('', '_det')
+            )
+        else:
+            merged = parsed
+
+        # Build IP → device_id mapping
+        ip_to_device = {}
+        if 'device_id' in parsed.columns:
+            src_map = parsed.dropna(subset=['device_id', 'source_ip']).sort_values('timestamp') \
+                             .drop_duplicates(subset=['source_ip'], keep='last') \
+                             .set_index('source_ip')['device_id'].to_dict()
+            ip_to_device.update(src_map)
+            if 'destination_ip' in parsed.columns:
+                dst_map = parsed.dropna(subset=['device_id', 'destination_ip']).sort_values('timestamp') \
+                                 .drop_duplicates(subset=['destination_ip'], keep='last') \
+                                 .set_index('destination_ip')['device_id'].to_dict()
+                ip_to_device.update(dst_map)
+
+        chains: List[Dict[str, Any]] = []
+        starting_sources = merged['source_ip'].dropna().unique().tolist()
+
+        for src in starting_sources:
+            chain_events: List[Dict[str, Any]] = []
+            visited_srcs = set()
+            queue = [src]
+
+            while queue:
+                cur_src = queue.pop(0)
+                if cur_src in visited_srcs:
+                    continue
+                visited_srcs.add(cur_src)
+
+                cur_events = merged[merged['source_ip'] == cur_src].sort_values('timestamp').to_dict('records')
+                if cur_events:
+                    chain_events.extend(cur_events)
+
+                for ev in cur_events:
+                    dst_ip = ev.get('destination_ip')
+                    if not dst_ip:
+                        continue
+                    mapped_device = ip_to_device.get(dst_ip)
+                    if mapped_device:
+                        possible_srcs = parsed[parsed['device_id'] == mapped_device]['source_ip'].dropna().unique().tolist()
+                        for possible_src in possible_srcs:
+                            if possible_src not in visited_srcs and possible_src not in queue:
+                                queue.append(possible_src)
+
+            # Deduplicate
+            seen = set()
+            deduped_events = []
+            for ev in sorted(chain_events, key=lambda x: x.get('timestamp') or pd.Timestamp(0)):
+                key = (
+                    str(ev.get('timestamp')),
+                    str(ev.get('source_ip')),
+                    str(ev.get('destination_ip')),
+                    str(ev.get('device_id')),
+                    str(ev.get('event_type', ev.get('rule_name', '')))
                 )
-        
+                if key not in seen:
+                    seen.add(key)
+                    cleaned = {k: (None if pd.isna(v) else v) for k, v in ev.items()}
+                    deduped_events.append(cleaned)
+
+            if not deduped_events:
+                continue
+
+            start = pd.to_datetime(deduped_events[0].get('timestamp'), errors='coerce')
+            end = pd.to_datetime(deduped_events[-1].get('timestamp'), errors='coerce')
+            duration_minutes = ((end - start).total_seconds() / 60) if (pd.notna(start) and pd.notna(end)) else 0.0
+
+            attack_types = list({e.get('rule_name') or e.get('event_type') for e in deduped_events if e.get('rule_name') or e.get('event_type')})
+            severities = [(e.get('severity') or e.get('threat_level') or '').lower() for e in deduped_events]
+            max_sev = max(severities, key=lambda s: self.severity_levels.get(s, 0)) if severities else None
+
+            chain = {
+                "chain_id": f"chain_{src}_{start.strftime('%Y%m%d_%H%M%S') if pd.notna(start) else 'unknown'}",
+                "source_ip": src,
+                "device_id": deduped_events[0].get('device_id'),
+                "start_time": start.strftime("%Y-%m-%d %H:%M:%S") if pd.notna(start) else None,
+                "end_time": end.strftime("%Y-%m-%d %H:%M:%S") if pd.notna(end) else None,
+                "duration_minutes": round(duration_minutes, 2),
+                "attack_types": attack_types,
+                "max_severity": max_sev,
+                "event_count": len(deduped_events),
+                "events_sequence": deduped_events,
+                "confidence_score": round(min(1.0, len(deduped_events) * 0.15), 2)
+            }
+            chains.append(chain)
+
         return chains
-    
-    def _build_ip_attack_chain(self, source_ip, detections, events, time_window_minutes):
-        """Build attack chain for a specific IP"""
-        chains = []
-        
-        # Create time-based groups of detections
-        time_window = timedelta(minutes=time_window_minutes)
-        
-        detection_groups = []
-        current_group = []
-        
-        for _, detection in detections.iterrows():
-            if not current_group:
-                current_group.append(detection)
-            else:
-                time_diff = detection['timestamp'] - current_group[-1]['timestamp']
-                if time_diff <= time_window:
-                    current_group.append(detection)
+
+    def visualize_chain_improved(self, chains: List[Dict[str, Any]], save_path: Optional[str] = None):
+        """
+        Per-device circular attack chain visualization.
+        Evenly spaced nodes (like clock positions) with directional arrows.
+        Each device's chain is shown separately with event-type color coding.
+        """
+        import matplotlib.pyplot as plt
+        import networkx as nx
+        import numpy as np
+        import os
+
+        if not chains:
+            print("[!] No attack chains to visualize.")
+            return
+
+        # Group by device
+        device_groups = {}
+        for chain in chains:
+            device_id = chain.get("device_id", "unknown_device")
+            device_groups.setdefault(device_id, []).append(chain)
+
+        # Color map by event type
+        event_colors = {
+            "scan": "yellow",
+            "bruteforce": "red",
+            "login": "red",
+            "exploit": "purple",
+            "access": "orange",
+            "unauthorized": "orange",
+            "malware": "darkred",
+            "virus": "darkred",
+            "ddos": "brown",
+            "flood": "brown",
+            "other": "lightblue"
+        }
+
+        for device_id, device_chains in device_groups.items():
+            for chain in device_chains:
+                events = chain.get("events_sequence", [])
+                if not events:
+                    continue
+
+                # Create directed graph
+                G = nx.DiGraph()
+
+                # Add nodes and edges
+                for i, event in enumerate(events):
+                    event_type = str(event.get("event_type", "unknown")).lower()
+                    timestamp = str(event.get("timestamp", ""))
+                    src_ip = str(event.get("source_ip", ""))
+                    label = f"{event_type}\n{timestamp}\nSrc: {src_ip}"
+
+                    node_id = f"event_{i}"
+                    G.add_node(node_id, label=label, event_type=event_type)
+
+                    if i > 0:
+                        G.add_edge(f"event_{i-1}", node_id)
+
+                # Assign colors
+                node_colors = []
+                for node in G.nodes():
+                    et = G.nodes[node]["event_type"]
+                    color = "lightblue"
+                    for key, val in event_colors.items():
+                        if key in et:
+                            color = val
+                            break
+                    node_colors.append(color)
+
+                # === Evenly spaced circular layout ===
+                num_nodes = len(G.nodes)
+                angle_step = 2 * np.pi / num_nodes
+                radius = 1.0
+                pos = {
+                    node: (radius * np.cos(i * angle_step), radius * np.sin(i * angle_step))
+                    for i, node in enumerate(G.nodes())
+                }
+
+                # Plot setup
+                plt.figure(figsize=(12, 8))
+
+                # Draw arrows for direction clarity
+                nx.draw_networkx_edges(
+                    G, pos,
+                    arrows=True,
+                    arrowstyle="->",
+                    arrowsize=16,
+                    edge_color="gray",
+                    width=1.5,
+                    connectionstyle="arc3,rad=0.1"
+                )
+
+                # Draw nodes
+                nx.draw_networkx_nodes(
+                    G, pos,
+                    node_color=node_colors,
+                    node_size=2000,
+                    alpha=0.9,
+                    edgecolors="none"
+                )
+
+                # Draw labels
+                nx.draw_networkx_labels(
+                    G, pos,
+                    labels={n: G.nodes[n]["label"] for n in G.nodes()},
+                    font_size=8,
+                    font_weight="bold"
+                )
+
+                # Add title
+                plt.title(
+                    f"Attack Chain for Device: {device_id}\nChain: {chain.get('chain_id')}",
+                    fontsize=12,
+                    fontweight="bold",
+                    pad=20
+                )
+
+                # Legend (same as reference)
+                legend_elements = [
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="yellow", label="Scanning", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="red", label="Brute Force", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="purple", label="Exploitation", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="orange", label="Access", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="darkred", label="Malware", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="brown", label="DDoS", markersize=10),
+                    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="lightblue", label="Other", markersize=10)
+                ]
+                plt.legend(handles=legend_elements, loc="upper right", bbox_to_anchor=(1.1, 1))
+
+                # Clean up layout
+                plt.axis("off")
+                plt.tight_layout()
+
+                # Save or show
+                if save_path:
+                    os.makedirs(save_path, exist_ok=True)
+                    filename = os.path.join(save_path, f"{device_id}_{chain.get('chain_id')}.png")
+                    plt.savefig(filename, dpi=300, bbox_inches="tight")
+                    plt.close()
                 else:
-                    detection_groups.append(current_group)
-                    current_group = [detection]
-        
-        if current_group:
-            detection_groups.append(current_group)
-        
-        # Build chains from groups
-        for group in detection_groups:
-            if len(group) > 1:  # Only create chains with multiple detections
-                chain = self._create_chain_from_group(source_ip, group, events)
-                if chain:
-                    chains.append(chain)
-        
-        return chains
-    
-    def _create_chain_from_group(self, source_ip, detection_group, events):
-        """Create a single attack chain from a detection group"""
-        if not detection_group:
-            return None
-        
-        # Get relevant events around detection times
-        start_time = detection_group[0]['timestamp'] - timedelta(minutes=5)
-        end_time = detection_group[-1]['timestamp'] + timedelta(minutes=5)
-        
-        relevant_events = events[
-            (events['timestamp'] >= start_time) & 
-            (events['timestamp'] <= end_time)
-        ]
-        
-        # Build chain structure
-        chain = {
-            'chain_id': f"chain_{source_ip}_{start_time.strftime('%Y%m%d_%H%M%S')}",
-            'source_ip': source_ip,
-            'start_time': start_time,
-            'end_time': end_time,
-            'duration_minutes': (end_time - start_time).total_seconds() / 60,
-            'detection_count': len(detection_group),
-            'attack_types': [det['rule_name'] for det in detection_group],
-            'max_severity': max(det['severity'] for det in detection_group),
-            'events_sequence': [],
-            'tactics_identified': self._identify_attack_tactics(detection_group),
-            'confidence_score': self._calculate_chain_confidence(detection_group, relevant_events)
-        }
-        
-        # Add event sequence
-        all_events = pd.concat([relevant_events, pd.DataFrame(detection_group)])
-        all_events = all_events.sort_values('timestamp')
-        
-        chain['events_sequence'] = all_events.to_dict('records')
-        
-        return chain
-    
-    def _identify_attack_tactics(self, detection_group):
-        """Identify MITRE ATT&CK like tactics from detections"""
-        tactics = set()
-        
-        tactic_mapping = {
-            'brute_force_attempt': 'Credential Access',
-            'data_exfiltration': 'Exfiltration',
-            'malicious_ip': 'Initial Access',
-            'suspicious_protocol': 'Command and Control'
-        }
-        
-        for detection in detection_group:
-            rule_name = detection['rule_name']
-            if rule_name in tactic_mapping:
-                tactics.add(tactic_mapping[rule_name])
-        
-        return list(tactics)
-    
-    def _calculate_chain_confidence(self, detection_group, relevant_events):
-        """Calculate confidence score for the attack chain"""
-        confidence = 0.0
-        
-        # More detections increase confidence
-        confidence += min(0.4, len(detection_group) * 0.1)
-        
-        # Supporting events increase confidence
-        if len(relevant_events) > len(detection_group):
-            confidence += 0.3
-        
-        # Multiple attack types increase confidence
-        attack_types = set(det['rule_name'] for det in detection_group)
-        if len(attack_types) > 1:
-            confidence += 0.2
-        
-        # High severity events increase confidence
-        severities = [det['severity'] for det in detection_group]
-        if 'critical' in severities or 'high' in severities:
-            confidence += 0.1
-        
-        return min(confidence, 1.0)
-    
-    def visualize_chain(self, chain):
-        """Create a simple text visualization of attack chain"""
-        if not chain:
-            return "No chain to visualize"
-        
-        visualization = f"""
-Attack Chain: {chain['chain_id']}
-Source IP: {chain['source_ip']}
-Time Range: {chain['start_time']} to {chain['end_time']}
-Duration: {chain['duration_minutes']:.1f} minutes
-Detections: {chain['detection_count']}
-Tactics: {', '.join(chain['tactics_identified'])}
-Confidence: {chain['confidence_score']:.2f}
-
-Event Sequence:
-"""
-        
-        for i, event in enumerate(chain['events_sequence'][:10]):  # Show first 10 events
-            visualization += f"{i+1}. {event.get('timestamp', '')} - {event.get('event_type', '')} - {event.get('rule_name', 'log')}\n"
-        
-        return visualization
-
-# Example usage
-if __name__ == "__main__":
-    from data_collection.log_parser import LogParser
-    from detection.rule_engine import RuleEngine
-    
-    parser = LogParser()
-    df = parser.parse_logs('../../../data/raw/sample_iot_logs.csv')
-    
-    rule_engine = RuleEngine()
-    detections = rule_engine.apply_rules(df)
-    
-    chain_builder = ContextChainBuilder()
-    chains = chain_builder.build_attack_chains(df, detections)
-    
-    print(f"Built {len(chains)} attack chains")
-    if chains:
-        print(chain_builder.visualize_chain(chains[0]))
+                    plt.show()

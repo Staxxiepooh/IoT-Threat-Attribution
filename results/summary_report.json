@@ -1,21 +1,29 @@
 {
-  "timestamp": "2025-10-23T18:19:45.551395",
-  "total_log_entries": 20,
-  "rule_detections": 6,
+  "timestamp": "2025-11-04T18:11:20.537682",
+  "total_log_entries": 30,
+  "rule_detections": 9,
   "anomaly_detections": 2,
-  "attacker_profiles": 5,
-  "attack_chains": 2,
+  "attacker_profiles": 6,
+  "attack_chains": 6,
   "severity_breakdown": {
-    "critical": 4,
-    "high": 2
+    "critical": 5,
+    "high": 4
   },
   "threat_level_distribution": {
-    "medium": 2,
-    "critical": 2,
-    "high": 1
+    "critical": 3,
+    "high": 2,
+    "medium": 1
   },
   "skill_level_distribution": {
-    "beginner": 3,
-    "intermediate": 2
+    "intermediate": 4,
+    "beginner": 2
+  },
+  "attack_chains_by_device": {
+    "device_001": 1,
+    "device_002": 1,
+    "device_003": 1,
+    "device_004": 1,
+    "device_005": 1,
+    "device_006": 1
   }
 }
